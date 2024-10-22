@@ -23,3 +23,64 @@ class Vehicle:
   
   def stop_engine(self):
     raise NotImplementedError("Este medoto debe ser impelmentado por la subclase")
+  
+# Sub-clases
+
+class Car(Vehicle):
+  def start_engine(self):
+    if not self.is_available:
+      return f"El motor del coche {self.brand} esta en marcha"
+    else:
+      return f"El coche {self.brand} no esta disponible"
+    
+  def stop_engine(self):
+    if not self.is_available:
+      return f"El motor del coche {self.brand} se ha detenido"
+    else:
+      return f"El coche {self.brand} no esta disponible."
+    
+class Bike(Vehicle):
+  def start_engine(self):
+    if not self.is_available:
+      return f"La bicicleta {self.brand} esta en marcha"
+    else:
+      return f"El bicicleta {self.brand} no esta disponible"
+    
+  def stop_engine(self):
+    if not self.is_available:
+      return f"La bicicleta {self.brand} se ha detenido"
+    else:
+      return f"La bicicleta {self.brand} No esta diponible"
+    
+class Truck(Vehicle):
+  def start_engine(self):
+    if not self.is_available:
+      return f"El motor del camion {self.brand} esta en marcha"
+    else:
+      return f"El camion {self.brand} no esta disponible"
+  
+  def stop_engine(self):
+    if not self.is_available:
+      return f"El motor del camion {self.brand} se ha detenido"
+    else:
+      return f"El camion {self.brand} no esta disponible."
+    
+class Customer:
+  def __init__(self, name):
+    self.name = name
+    self.purchased_vehicle = []
+    
+  def buy_vehicle(self, vehicle: Vehicle):
+    if vehicle.check_available():
+      vehicle.sell()
+      self.purchased_vehicle.append(vehicle)
+    else:
+      print(f"Lo siento, {vehicle.brand} no esta disponible")
+    
+  def inquire_vehicle(self, vehicle: Vehicle):
+    if vehicle.check_available():
+      availability = "Disponible"
+    else:
+      availability = "No disponible"
+    print(f"El {vehicle.brand} esta {availability} y cuesta {vehicle.get_price()}")
+    
