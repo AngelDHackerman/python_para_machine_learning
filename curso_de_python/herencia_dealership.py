@@ -84,3 +84,21 @@ class Customer:
       availability = "No disponible"
     print(f"El {vehicle.brand} esta {availability} y cuesta {vehicle.get_price()}")
     
+class Dealership:
+  def __init__(self):
+    self.inventory = []
+    self.customers = []
+    
+  def add_vehicle(self, vehicle: Vehicle):
+    self.inventory.append(vehicle)
+    print(f"El {vehicle.brand} ha sido añadido al inventario")
+    
+  def register_customer(self, customer: Customer):
+    self.customers.append(customer)
+    print(f"El cliente {customer.name} ha sido añadido")
+    
+  def show_available_vehicles(self):
+    print("Vehiculos disponibles en la tienda")
+    for vehicle in self.inventory:
+      if vehicle.check_available():
+        print(f"- {vehicle.brand} - {vehicle.model} por {vehicle.get_price()}")
